@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Los 15 de Martu 🎉</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/party-js@latest/bundle/party.min.js"></script>
+    <style>
+        @tailwind base;
+        @tailwind components;
+        @tailwind utilities;
+
+        :root {
+            --color-primary: #FF69B4;
+            --color-secondary: #9370DB;
+            --color-accent: #FFD700;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            scroll-behavior: smooth;
+        }
+
+        .bg-gradient {
+            background: linear-gradient(135deg, #FF69B4, #9370DB);
+        }
+
+        .animate-float {
+            animation: float 3s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+            100% { transform: translateY(0px); }
+        }
+
+        .section {
+            scroll-margin-top: 5rem;
+        }
+
+        .countdown-item {
+            @apply bg-white rounded-lg p-4 shadow-lg text-center min-w-[80px];
+        }
+
+        .nav-link {
+            @apply px-4 py-2 rounded-full transition-all duration-300 hover:bg-white/20 cursor-pointer;
+        }
+
+        .btn-primary {
+            @apply bg-white text-pink-500 font-bold py-3 px-6 rounded-full shadow-lg 
+                   transform transition-all duration-300 hover:scale-105 hover:shadow-xl
+                   active:scale-95;
+        }
+    </style>
+</head>
+<body class="bg-gradient-to-br from-pink-100 to-purple-100 min-h-screen">
+    <!-- Navigation -->
+    <nav class="fixed w-full bg-gradient backdrop-blur-sm bg-opacity-80 text-white z-50 py-4">
+        <div class="container mx-auto px-4">
+            <div class="flex justify-between items-center">
+                <div class="text-2xl font-bold">Martu XV</div>
+                <div class="hidden md:flex space-x-4">
+                    <a href="#inicio" class="nav-link">Inicio</a>
+                    <a href="#countdown" class="nav-link">Cuenta Regresiva</a>
+                    <a href="#ubicacion" class="nav-link">Dónde y Cuándo</a>
+                    <a href="#dress-code" class="nav-link">Dress Code</a>
+                    <a href="#confirmar" class="nav-link">Confirmar</a>
+                    <a href="#playlist" class="nav-link">Playlist</a>
+                    <a href="#mensajes" class="nav-link">Mensajes</a>
+                    <a href="#faq" class="nav-link">FAQ</a>
+                </div>
+                <button class="md:hidden" onclick="toggleMenu()">
+                    <i class="fas fa-bars text-2xl"></i>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Mobile Menu -->
+    <div id="mobile-menu" class="fixed inset-0 bg-gradient z-40 transform translate-x-full transition-transform duration-300">
+        <div class="flex flex-col items-center justify-center h-full space-y-8 text-white">
+            <button onclick="toggleMenu()" class="absolute top-4 right-4">
+                <i class="fas fa-times text-3xl"></i>
+            </button>
+            <a href="#inicio" class="text-xl" onclick="toggleMenu()">Inicio</a>
+            <a href="#countdown" class="text-xl" onclick="toggleMenu()">Cuenta Regresiva</a>
+            <a href="#ubicacion" class="text-xl" onclick="toggleMenu()">Dónde y Cuándo</a>
+            <a href="#dress-code" class="text-xl" onclick="toggleMenu()">Dress Code</a>
+            <a href="#confirmar" class="text-xl" onclick="toggleMenu()">Confirmar</a>
+            <a href="#playlist" class="text-xl" onclick="toggleMenu()">Playlist</a>
+            <a href="#mensajes" class="text-xl" onclick="toggleMenu()">Mensajes</a>
+            <a href="#faq" class="text-xl" onclick="toggleMenu()">FAQ</a>
+        </div>
+    </div>
+
+    <!-- Hero Section -->
+    <section id="inicio" class="section min-h-screen flex items-center justify-center text-center pt-20">
+        <div class="container mx-auto px-4">
+            <h1 class="text-5xl md:text-7xl font-bold text-transparent bg-clip-text bg-gradient animate-float mb-6">
+                ¡Se vienen los 15 de Martu!
+            </h1>
+            <p class="text-xl md:text-2xl text-gray-700 mb-8 max-w-2xl mx-auto">
+                Prepárate para una noche mágica, con amigos, sorpresas y mucho baile. 
+                Todo lo que necesitás saber está acá. No te cuelgues.
+            </p>
+            <a href="#confirmar" class="btn-primary" onclick="party.confetti(this)">
+                Confirmá tu asistencia
+            </a>
+        </div>
+    </section>
+
+    <!-- Countdown Section -->
+    <section id="countdown" class="section py-20 bg-white/30">
+        <div class="container mx-auto px-4">
+            <h2 class="text-4xl font-bold text-center mb-12">¡Se viene la fiesta!</h2>
+            <div class="flex justify-center space-x-4">
+                <div class="countdown-item">
+                    <div id="days" class="text-3xl font-bold text-pink-500">00</div>
+                    <div class="text-gray-600">Días</div>
+                </div>
+                <div class="countdown-item">
+                    <div id="hours" class="text-3xl font-bold text-pink-500">00</div>
+                    <div class="text-gray-600">Horas</div>
+                </div>
+                <div class="countdown-item">
+                    <div id="minutes" class="text-3xl font-bold text-pink-500">00</div>
+                    <div class="text-gray-600">Minutos</div>
+                </div>
+                <div class="countdown-item">
+                    <div id="seconds" class="text-3xl font-bold text-pink-500">00</div>
+                    <div class="text-gray-600">Segundos</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Location Section -->
+    <section id="ubicacion" class="section py-20">
+        <div class="container mx-auto px-4">
+            <h2 class="text-4xl font-bold text-center mb-8">¿Dónde y Cuándo?</h2>
+            <div class="bg-white rounded-2xl shadow-xl p-8 max-w-3xl mx-auto">
+                <p class="text-xl text-center mb-8">
+                    Nos vemos el sábado 5 de octubre a las 21:00 hs en el Salón Brillante. 
+                    ¡No llegues tarde, no te vayas a perder la entrada!
+                </p>
+                <div class="aspect-w-16 aspect-h-9 rounded-lg overflow-hidden mb-6">
+                    <!-- Placeholder for Google Maps -->
+                    <div class="w-full h-[300px] bg-gray-200 rounded-lg flex items-center justify-center">
+                        <p class="text-gray-500">Mapa de ubicación</p>
+                    </div>
+                </div>
+                <div class="text-center">
+                    <a href="#" class="btn-primary inline-flex items-center">
+                        <i class="fas fa-map-marker-alt mr-2"></i>
+                        ¿Cómo llego?
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Dress Code Section -->
+    <section id="dress-code" class="section py-20 bg-white/30">
+        <div class="container mx-auto px-4">
+            <h2 class="text-4xl font-bold text-center mb-8">Dress Code</h2>
+            <div class="text-center mb-8">
+                <p class="text-2xl mb-4">Traete tu mejor outfit. Vení a brillar. ✨</p>
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-6 max-w-3xl mx-auto">
+                    <div class="bg-white p-6 rounded-xl shadow-lg">
+                        <i class="fas fa-tshirt text-4xl text-pink-500 mb-4"></i>
+                        <p>Elegante Sport</p>
+                    </div>
+                    <div class="bg-white p-6 rounded-xl shadow-lg">
+                        <i class="fas fa-gem text-4xl text-pink-500 mb-4"></i>
+                        <p>¡Brillá!</p>
+                    </div>
+                    <div class="bg-white p-6 rounded-xl shadow-lg">
+                        <i class="fas fa-shoe-prints text-4xl text-pink-500 mb-4"></i>
+                        <p>Zapatos cómodos</p>
+                    </div>
+                    <div class="bg-white p-6 rounded-xl shadow-lg">
+                        <i class="fas fa-magic text-4xl text-pink-500 mb-4"></i>
+                        <p>Actitud</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- RSVP Section -->
+    <section id="confirmar" class="section py-20">
+        <div class="container mx-auto px-4">
+            <h2 class="text-4xl font-bold text-center mb-8">Confirmá tu asistencia</h2>
+            <form id="rsvp-form" class="max-w-2xl mx-auto bg-white rounded-2xl shadow-xl p-8">
+                <div class="mb-6">
+                    <label class="block text-gray-700 mb-2" for="nombre">Nombre y Apellido</label>
+                    <input type="text" id="nombre" required
+                           class="w-full px-4 py-2 rounded-lg border focus:outline-none focus:ring-2 focus:ring-pink-500">
+                </div>
+                
+                <div class="mb-6">
+                    <label class="block text-gray-700 mb-2">¿Vas a venir?</label>
+                    <div class="flex space-x-4">
+                        <label class="flex items-center">
+                            <input type="radio" name="asistencia" value="si" required
+                                   class="form-radio text-pink-500">
+                            <span class="ml-2">¡Obvio!</span>
+                        </label>
+                        <label class="flex items-center">
+                            <input type="radio" name="asistencia" value="no" required
+                                   class="form-radio text-pink-500">
+                            <span class="ml-2">Me la pierdo 😢</span>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="mb-6">
+                    <label class="block text-gray-700 mb-2">¿Tenés alguna restricción alimentaria?</label>
+                    <div class="space-y-2">
+                        <label class="flex items-center">
+                            <input type="checkbox" name="restricciones" value="celiaco"
+                                   class="form-checkbox text-pink-500">
+                            <span class="ml-2">Celíaco/a</span>
+                        </label>
+                        <label class="flex items-center">
+                            <input type="checkbox" name="restricciones" value="vegano"
+                                   class="form-checkbox text-pink-500">
+                            <span class="ml-2">Vegano/a</span>
+                        </label>
+                        <label class="flex items-center">
+                            <input type="checkbox" name="restricciones" value="vegetariano"
+                                   class="form-checkbox text-pink-500">
+                            <span class="ml-2">Vegetariano/a</span>
+                        </label>
+                    </div>
+                    <div class="mt-4">
+                        <label class="block text-gray-700 mb-2">Otras alergias o restricciones:</label>
+                        <textarea class="w-full px-4 py-2 rounded-lg border focus:outline-none focus:ring-2 focus:ring-pink-500"
+                                  rows="2"></textarea>
+                    </div>
+                </div>
+
+                <button type="submit" class="btn-primary w-full">
+                    Enviar confirmación
+                </button>
+            </form>
+        </div>
+    </section>
+
+    <!-- Playlist Section -->
+    <section id="playlist" class="section py-20 bg-white/30">
+        <div class="container mx-auto px-4">
+            <h2 class="text-4xl font-bold text-center mb-8">Temazos para el fiestón de Martu</h2>
+            <div class="max-w-2xl mx-auto">
+                <form id="song-form" class="bg-white rounded-2xl shadow-xl p-8 mb-8">
+                    <div class="flex gap-4">
+                        <input type="text" placeholder="Sugerí una canción" 
+                               class="flex-1 px-4 py-2 rounded-lg border focus:outline-none focus:ring-2 focus:ring-pink-500">
+                        <button type="submit" class="btn-primary">
+                            <i class="fas fa-music mr-2"></i>
+                            Agregar
+                        </button>
+                    </div>
+                </form>
+                
+                <div id="playlist-container" class="space-y-4">
+                    <!-- Songs will be added here -->
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Messages Section -->
+    <section id="mensajes" class="section py-20">
+        <div class="container mx-auto px-4">
+            <h2 class="text-4xl font-bold text-center mb-8">Libro de mensajes</h2>
+            <div class="max-w-2xl mx-auto">
+                <form id="message-form" class="bg-white rounded-2xl shadow-xl p-8 mb-8">
+                    <textarea placeholder="Dejale un mensaje a Martu..." 
+                              class="w-full px-4 py-2 rounded-lg border focus:outline-none focus:ring-2 focus:ring-pink-500 mb-4"
+                              rows="3"></textarea>
+                    <button type="submit" class="btn-primary w-full">
+                        <i class="fas fa-heart mr-2"></i>
+                        Mandar amor a Martu
+                    </button>
+                </form>
+                
+                <div id="messages-container" class="space-y-4">
+                    <!-- Messages will be added here -->
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section id="faq" class="section py-20 bg-white/30">
+        <div class="container mx-auto px-4">
+            <h2 class="text-4xl font-bold text-center mb-12">Preguntas Random</h2>
+            <div class="max-w-3xl mx-auto space-y-6">
+                <div class="bg-white rounded-xl shadow-lg p-6">
+                    <h3 class="text-xl font-bold mb-2">¿Puedo venir con hambre? 🍽️</h3>
+                    <p class="text-gray-700">Obvio, el menú está letal.</p>
+                </div>
+                <div class="bg-white rounded-xl shadow-lg p-6">
+                    <h3 class="text-xl font-bold mb-2">¿Habrá tragos? 🍹</h3>
+                    <p class="text-gray-700">Tranqui, no lo preguntes más.</p>
+                </div>
+                <div class="bg-white rounded-xl shadow-lg p-6">
+                    <h3 class="text-xl font-bold mb-2">¿Puedo bailar hasta el amanecer? 💃</h3>
+                    <p class="text-gray-700">Si no lo hacés, te echamos.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        // Mobile menu toggle
+        function toggleMenu() {
+            const menu = document.getElementById('mobile-menu');
+            menu.classList.toggle('translate-x-full');
+        }
+
+        // Countdown timer
+        function updateCountdown() {
+            const eventDate = new Date('October 5, 2024 21:00:00').getTime();
+            const now = new Date().getTime();
+            const distance = eventDate - now;
+
+            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+            document.getElementById('days').textContent = String(days).padStart(2, '0');
+            document.getElementById('hours').textContent = String(hours).padStart(2, '0');
+            document.getElementById('minutes').textContent = String(minutes).padStart(2, '0');
+            document.getElementById('seconds').textContent = String(seconds).padStart(2, '0');
+        }
+
+        setInterval(updateCountdown, 1000);
+        updateCountdown();
+
+        // Form submissions
+        document.getElementById('rsvp-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('¡Gracias por confirmar! Te esperamos 🎉');
+        });
+
+        document.getElementById('song-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('¡Gracias por tu sugerencia! Ya la agregamos a la playlist 🎵');
+        });
+
+        document.getElementById('message-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('¡Gracias por tu mensaje! Martu lo va a amar ❤️');
+        });
+
+        // Confetti effect on buttons
+        document.querySelectorAll('.btn-primary').forEach(button => {
+            button.addEventListener('click', () => {
+                party.confetti(button, {
+                    count: party.variation.range(20, 40),
+                });
+            });
+        });
+    </script>
+</body>
+</html>
