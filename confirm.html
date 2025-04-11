@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Confirmación - Quince Años de Martina</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Dancing+Script:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        .font-playfair { font-family: 'Playfair Display', serif; }
+        .font-dancing { font-family: 'Dancing Script', cursive; }
+        .bg-golden { background-color: #DAA520; }
+        .text-golden { color: #DAA520; }
+        .border-golden { border-color: #DAA520; }
+    </style>
+</head>
+<body class="min-h-screen bg-gradient-to-b from-[#FDF5E6] to-[#FFFAF0] flex items-center justify-center p-4">
+    <div class="max-w-md w-full bg-white rounded-2xl shadow-2xl p-8 relative overflow-hidden">
+        <div class="absolute top-0 left-0 w-full h-2 bg-golden"></div>
+        <div class="absolute bottom-0 left-0 w-full h-2 bg-golden"></div>
+        
+        <div class="text-center space-y-6">
+            <h1 class="font-dancing text-4xl md:text-5xl text-golden mb-4">Mis Quince Años</h1>
+            <p class="font-playfair text-3xl text-gray-800">Martina</p>
+            
+            <div class="w-24 h-1 bg-golden mx-auto my-6"></div>
+            
+            <div id="confirmationMessage" class="space-y-4">
+                <!-- Message will be inserted here by JavaScript -->
+            </div>
+            
+            <div class="mt-8">
+                <a href="index.html" class="inline-block bg-golden hover:bg-[#B8860B] text-white font-playfair py-2 px-6 rounded-lg transition-colors duration-300 shadow-md hover:shadow-lg">
+                    Volver al inicio
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const name = urlParams.get('name');
+            const response = urlParams.get('response');
+            const messageDiv = document.getElementById('confirmationMessage');
+            
+            if (!name || !response) {
+                window.location.href = 'index.html';
+                return;
+            }
+            
+            if (response === 'yes') {
+                messageDiv.innerHTML = `
+                    <div class="space-y-4">
+                        <i class="fas fa-heart text-4xl text-golden"></i>
+                        <p class="font-playfair text-xl text-gray-800">
+                            ¡Gracias <span class="text-golden">${name}</span> por confirmar tu asistencia a la fiesta de Martina!
+                        </p>
+                        <p class="font-dancing text-2xl text-golden">¡Nos vemos pronto!</p>
+                    </div>
+                `;
+            } else {
+                messageDiv.innerHTML = `
+                    <div class="space-y-4">
+                        <i class="fas fa-heart-broken text-4xl text-golden"></i>
+                        <p class="font-playfair text-xl text-gray-800">
+                            Lamentamos que no puedas asistir, <span class="text-golden">${name}</span>.
+                        </p>
+                        <p class="font-dancing text-2xl text-golden">¡Te extrañaremos!</p>
+                    </div>
+                `;
+            }
+        });
+    </script>
+</body>
+</html>
