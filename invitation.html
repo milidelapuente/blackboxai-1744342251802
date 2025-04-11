@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Invitación - Quince Años de Martina</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Dancing+Script:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        .font-playfair { font-family: 'Playfair Display', serif; }
+        .font-dancing { font-family: 'Dancing Script', cursive; }
+        .bg-golden { background-color: #DAA520; }
+        .text-golden { color: #DAA520; }
+        .border-golden { border-color: #DAA520; }
+        .invitation-bg {
+            background-image: url('https://images.pexels.com/photos/7130560/pexels-photo-7130560.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1');
+            background-size: cover;
+            background-position: center;
+        }
+    </style>
+</head>
+<body class="min-h-screen bg-gradient-to-b from-[#FDF5E6] to-[#FFFAF0] flex items-center justify-center p-4">
+    <div class="max-w-2xl w-full bg-white rounded-2xl shadow-2xl p-8 relative overflow-hidden">
+        <div class="absolute top-0 left-0 w-full h-2 bg-golden"></div>
+        <div class="absolute bottom-0 left-0 w-full h-2 bg-golden"></div>
+        
+        <div class="text-center space-y-8">
+            <div class="mb-8">
+                <h1 class="font-dancing text-5xl text-golden mb-4">Mis Quince Años</h1>
+                <p id="guestGreeting" class="font-playfair text-2xl text-gray-800">¡Hola, <span id="guestName" class="text-golden"></span>!</p>
+            </div>
+
+            <div class="space-y-6">
+                <p class="font-dancing text-4xl text-golden">Te invito a celebrar</p>
+                <p class="font-playfair text-3xl text-gray-800">Mis Quince Años</p>
+                
+                <div class="w-32 h-1 bg-golden mx-auto my-6"></div>
+                
+                <div class="space-y-4">
+                    <div class="flex items-center justify-center space-x-2">
+                        <i class="fas fa-map-marker-alt text-golden"></i>
+                        <p class="font-playfair text-xl text-gray-700">El Lauquen club de Campo</p>
+                    </div>
+                    
+                    <div class="flex items-center justify-center space-x-2">
+                        <i class="fas fa-calendar text-golden"></i>
+                        <p class="font-playfair text-xl text-gray-700">14 de abril de 2026</p>
+                    </div>
+                </div>
+
+                <div class="my-8">
+                    <p class="font-dancing text-3xl text-golden">¿Y vos?</p>
+                    <p class="font-playfair text-xl text-gray-700 mt-2">¿Qué esperas para confirmar asistencia?</p>
+                </div>
+
+                <div class="flex justify-center space-x-4">
+                    <button onclick="handleResponse('yes')" class="bg-golden hover:bg-[#B8860B] text-white font-playfair py-3 px-6 rounded-lg transition-colors duration-300 shadow-md hover:shadow-lg">
+                        Confirmar asistencia
+                    </button>
+                    <button onclick="handleResponse('no')" class="bg-gray-200 hover:bg-gray-300 text-gray-700 font-playfair py-3 px-6 rounded-lg transition-colors duration-300 shadow-md hover:shadow-lg">
+                        No podré asistir
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const name = urlParams.get('name');
+            
+            if (!name) {
+                window.location.href = 'index.html';
+                return;
+            }
+            
+            document.getElementById('guestName').textContent = name;
+        });
+
+        function handleResponse(response) {
+            const urlParams = new URLSearchParams(window.location.search);
+            const name = urlParams.get('name');
+            window.location.href = `confirm.html?name=${encodeURIComponent(name)}&response=${response}`;
+        }
+    </script>
+</body>
+</html>
